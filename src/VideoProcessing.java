@@ -158,11 +158,12 @@ public class VideoProcessing extends JFrame implements Imageoperations {
     	//   Imgproc.threshold(processedImage, processedImage, 127, 255,
     	//		   Imgproc.THRESH_BINARY);
 
-		   double[] cArray = frame.get(0,0);
+		/*   double[] cArray = frame.get(0,0);
 		   frame.put(0,0,cArray);
 		   Mat m = new Mat();
 		   ((MatOfDouble)m).fromArray(cArray);
 		   m.copyTo(processedImage);
+		*/
     	   // Show processed image
     	   imgPanel2.setImage(Mat2BufferedImage(processedImage));
     	   pack();
