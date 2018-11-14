@@ -92,8 +92,8 @@ public interface Imageoperations {
         Mat Gaus = gaussianBlur(ImageMat);
         Mat ImgRed = new Mat();
 
-        Scalar lowerRed = new Scalar(30,10,10);
-        Scalar upperRed = new Scalar(255,40,40);
+        Scalar lowerRed = new Scalar(10,10,30);
+        Scalar upperRed = new Scalar(40,40,255);
 
         Core.inRange(Gaus,lowerRed,upperRed,ImgRed);
 
@@ -105,8 +105,8 @@ public interface Imageoperations {
         Mat ImgBlue = new Mat();
 
 
-        Scalar lowerBlue = new Scalar(10,10,30);
-        Scalar upperBlue = new Scalar(40,40,255);
+        Scalar lowerBlue = new Scalar(30,10,10);
+        Scalar upperBlue = new Scalar(255,40,40);
 
         Core.inRange(Gaus,lowerBlue,upperBlue,ImgBlue);
 

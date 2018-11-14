@@ -41,7 +41,6 @@ public class VideoProcessing extends JFrame implements Imageoperations {
 	public VideoProcessing() {
 		imgPanel1 = null;
 		imgPanel2 = null;
-		
 		createFrame();
 		processShowVideo();
 	}
@@ -96,12 +95,15 @@ public class VideoProcessing extends JFrame implements Imageoperations {
 		setTitle("Original and processed video stream");
 		
 		JPanel contentPane = (JPanel) getContentPane();
+		JPanel contentPane2 = (JPanel) getContentPane();
 		contentPane.setLayout(new FlowLayout());
+		contentPane2.setLayout(new FlowLayout());
 		
 		imgPanel1 = new BufferedImagePanel();
 		contentPane.add(imgPanel1);
 		imgPanel2 = new BufferedImagePanel();
 		contentPane.add(imgPanel2);
+
 				
 	       // place the frame at the center of the screen and show
 		pack();
@@ -123,7 +125,7 @@ public class VideoProcessing extends JFrame implements Imageoperations {
 		// END: Prepare streaming from internal web cam		
 
 	   // BEGIN: Prepare streaming from video file
-       String filePathName = getFilePathName();
+      // String filePathName = getFilePathName();
 	   VideoCapture cap = new VideoCapture(0);
  	   // END: Prepare streaming from video file
 
@@ -132,7 +134,8 @@ public class VideoProcessing extends JFrame implements Imageoperations {
 	   if(!cap.isOpened()) 
 		   throw new CvException("The Video File or the Camera could not be opened!");
         
-	   Mat processedImage = new Mat();  
+	   Mat processedImageBGR = new Mat();
+
 	   cap.read(frame);
 	   System.out.println("  First grabbed frame: " + frame);
 	   System.out.println("  Matrix columns: " + frame.cols());
@@ -164,13 +167,15 @@ public class VideoProcessing extends JFrame implements Imageoperations {
 		   ((MatOfDouble)m).fromArray(cArray);
 		   m.copyTo(processedImage);
 		*/
+		   processedImageBGR= Imageoperations.colorLabelingBlue(frame);
     	   // Show processed image
-    	   imgPanel2.setImage(Mat2BufferedImage(processedImage));
+    	   imgPanel2.setImage(Mat2BufferedImage(processedImageBGR));
     	   pack();
         
     	   // Write unprocessed and processed frame successively to files
     	   writeImage(frame, "unprocessedImage.jpg");
-    	   writeImage(processedImage, "processedImage.jpg");
+    	   writeImage(processedImageBGR, "processedImageBGR.jpg");
+
        } // END for loop
 	   System.out.println(".(" + i + ")");
 	   cap.release();
