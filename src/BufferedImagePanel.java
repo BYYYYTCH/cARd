@@ -2,7 +2,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
 import javax.swing.JComponent;
 
 /**
@@ -25,6 +24,7 @@ public class BufferedImagePanel extends JComponent {
 	// An internal image buffer that is used for painting. For
 	// actual display, this image buffer is then copied to screen.
 	private BufferedImage panelImage;
+	private BufferedImage objectImage;
 
 	/**
 	 * Create a new, empty ImagePanel.
@@ -34,8 +34,16 @@ public class BufferedImagePanel extends JComponent {
 		width = 640;    // arbitrary size for empty panel
 	    height = 480;
 	    panelImage = null;
+	    objectImage = null;
 	}
+	/**
+	 * return the objectImage.
+	 *
+	 */
+	public BufferedImage getObjectImage(){
 
+		return objectImage;
+	}
 	/**
 	 * Set the image that this panel should show.
 	 * 
@@ -47,6 +55,7 @@ public class BufferedImagePanel extends JComponent {
 			width = image.getWidth();
 			height = image.getHeight();
 	        panelImage = image;
+	        objectImage = image;
 	        repaint();
 	        }
 	 }
@@ -87,8 +96,9 @@ public class BufferedImagePanel extends JComponent {
 	    {
 	        Dimension size = getSize();
 	        g.clearRect(0, 0, size.width, size.height);
-	        if(panelImage != null) {
+	        if(panelImage != null && objectImage != null) {
 	            g.drawImage(panelImage, 0, 0, null);
+	            g.drawImage(objectImage,0,0,null);//2.0 : Koordinaten werden von Karten übernommen und Größe verändert
 	        }
 	    }	
 }
