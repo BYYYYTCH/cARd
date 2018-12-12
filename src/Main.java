@@ -37,7 +37,7 @@ public class Main extends StartCodeMainWindowPP {
      * @param args
      */
     public static void main(String[] args) {
-        new Sphere();
+        new Shapes();
         // Load OpenCV libraries and start program
         System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
         //  System.loadLibrary();  																																	 //NOCH WAS LADEN ?? // hat sich erledigt.
